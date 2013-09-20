@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+{% block content %}
+
+
+<a href="/ticwiapp/desktop"> Desktop </a>
+.....<a href="/ticwiapp/search_user"> Search Users </a>
+
+
+<form action="/ticwiapp/send_message/{{ user_id }}/{{ sender_id}}/" method="post">{% csrf_token %}
+<ul>
+{{form.as_ul}}
+</ul>
+
+<input type="submit" name="submit" value="Send">
+</form>
+
+
+
+{% if messages.count > 0 %}
+
+ <TABLE CLASS="MYTABLE">
+
+    <TBODY>
+{% for message in messages %}
+<TR CLASS="MYTABLE">
+<TD CLASS="MYTABLE">Time: {{ message.pub_date }} </a></TD>
+{# Follow |add:0 is a trick to convert to int the sender id provided then be able to compare int and int #}
+<TD CLASS="MYTABLE"> {% ifnotequal message.sender_id  sender_id|add:0 %} {{ message.sender_id }}/{{ sender_id }} ---- {{ message.body }} {% endifnotequal %} </TD>
+<TD CLASS="MYTABLE"> {% ifnotequal message.sender_id  user_id|add:0 %} {{ message.sender_id }}/{{ user_id }}   ---- {{ message.body }} {% endifnotequal %} </TD>
+	
+</TR>
+
+{% endfor %}
+
+ </TBODY>
+</TABLE>
+
+{% else %}
+
+<p>None!!</p>
+{# NO MESSAGES SENT #}
+{% endif %}
+
+
+{% endblock %}
+

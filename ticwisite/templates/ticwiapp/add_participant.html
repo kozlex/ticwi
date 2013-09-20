@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+{% block content %}
+
+.....<a href="/ticwiapp/get_one_course/{{course_id}}"> Cancel </a>
+{% if participants.count > 0 %}
+
+ <TABLE CLASS="MYTABLE">
+    <CAPTION CLASS="MYTABLE">Participants</CAPTION>
+    
+    <THEAD >
+      <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">Name</TH>
+        <TH CLASS="MYTABLE"></TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+{% for participant in participants %}
+<TR CLASS="MYTABLE">
+<TD CLASS="MYTABLE">{{ participant.email }}</TD>
+<TD CLASS="MYTABLE"><a href="/ticwiapp/add_participant_now/{{ course_id }}/{{participant.id}}/"> <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/></a></TD>
+</TR>
+
+{% endfor %}
+
+ </TBODY>
+</TABLE>
+
+{% else %}
+
+
+<pd>No participants in database!</p>
+
+{% endif %}
+
+{% endblock %}
+

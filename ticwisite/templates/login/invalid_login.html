@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block upbar %}
+    {% include 'upbar_login.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+
+  variable : {{ variable }}
+  username: {{ username }}
+  email: {{ email }}
+  password:  {{ password }}
+  <h2>Your username or password is invalid! Please try again.</h2>
+
+{% endblock %}

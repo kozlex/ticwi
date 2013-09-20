@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static  %}
+<link rel="stylesheet" type="text/css" href=" {% static  "assets/css/default.css" %}" >
+
+{% block upbar %}
+    {% include 'upbar_login.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+  
+  <h2>Register</h2>
+  
+  
+  <form action="/accounts/register/" method="post">{% csrf_token %}
+  {{form.as_ul}}
+  
+  <input type="submit" value="Register" />
+    
+  </form>
+  
+{% endblock %}

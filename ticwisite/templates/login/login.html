@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block upbar %}
+    {% include 'upbar_login.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+
+<div>
+	<table border=0 width=100% >
+	<tr>
+	<td>
+		<img src=" {% static  "assets/images/happy-girl.jpg" %} " width=500/>
+		<h1> WhicH arE yOur Tics? </h1>
+	</td>
+	<td >
+
+		<iframe title="YouTube video player" class="youtube-player" type="text/html" 
+		width="400" height="390" src="http://www.youtube.com/embed/W-Q7RMpINVo"
+		frameborder="0" allowFullScreen></iframe>
+
+		<p>	<a href="/accounts/register"><img align=left src=" {% static  "assets/images/register_now.png" %} " width=300/></a></p>
+	</td>
+	</tr>
+	</table>
+</div>
+
+{% endblock content %}

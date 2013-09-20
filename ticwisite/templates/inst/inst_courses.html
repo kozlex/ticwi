@@ -1,0 +1,18 @@
+
+{% if courses.count > 0 %}
+
+{% for course in courses %}
+<div>
+<h2><a href="/courses/get_one_course/{{ course.id }}/">{{ course.name }}</a></h2>
+<p>{{ course.description }}</p>
+<p>date: {{course.date}} </a></p>
+</div>
+{% endfor %}
+
+{% else %}
+
+<p>None to show!</p>
+
+{% endif %}
+
+

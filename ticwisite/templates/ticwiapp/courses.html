@@ -1,0 +1,42 @@
+{% load static %}
+
+
+{% block all_courses %}
+
+
+{% if courses.count > 0 %}
+
+ <TABLE CLASS="MYTABLE">
+    <CAPTION CLASS="MYTABLE">Future courses</CAPTION>
+    
+    <THEAD >
+      <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">Name</TH>
+        <TH CLASS="MYTABLE">Description</TH>
+        <TH CLASS="MYTABLE">Date</TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+{% for course in courses %}
+<TR CLASS="MYTABLE">
+<TD CLASS="MYTABLE"><a href="/ticwiapp/get_one_course/{{ course.id }}/">{{ course.name }}</a></TD>
+<TD CLASS="MYTABLE">{{ course.description }}</TD>
+<TD CLASS="MYTABLE">{{ course.date }}</TD>
+</TR>
+
+{% endfor %}
+
+ </TBODY>
+</TABLE>
+
+{% else %}
+
+
+<p><img src=" {% static  "assets/images/alert_icon.jpg" %} " width=30/>
+No Courses registeded.!</p>
+
+{% endif %}
+
+
+{% endblock %}
+

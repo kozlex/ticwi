@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load static %}
+{% block upbar %}
+    {% include 'upbar_login.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+
+  <img src=" {% static  "assets/images/thanks-for-coming.jpg" %} " width=500/><br>
+  <img src=" {% static  "assets/images/come_back_soon.jpg" %} " width=200/>
+  <h2>Thanks! </h2>
+  <p>Click <a href="/accounts/login/">here</a> to login again</p>
+
+{% endblock content %}

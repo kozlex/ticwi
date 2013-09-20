@@ -1,0 +1,35 @@
+
+{% block upbar_login %}
+<table border="0" width=100%>
+<tr>
+<td><font size=5 style="bold"><b> <a href="/accounts/go_home">ticwi</a></b></font></td>
+<td align=right>
+
+
+  {% if form.errors %}
+    <p class="error">Sorry, that's not a valid username or password</p>
+  {% endif %}
+
+
+  <form action="/accounts/auth/" method="post">{% csrf_token %}
+    <label for="email">Email:</label>
+    <input type="text" name="email" value="" id="email">
+    <label for="password">Password:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+
+  </form>
+
+
+
+</td>
+</tr>
+<tr>
+<td><font size="2">Which are your Tics?</font></td>
+<td align=right><font size="2">Forgot your Password?</font></td>
+</tr>
+
+</table>
+{% endblock upbar_login %}
+

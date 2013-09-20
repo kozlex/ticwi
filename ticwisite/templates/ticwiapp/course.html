@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+
+<p>
+<a href="/ticwiapp/edit_course/{{course.id}}"> Edit </a>...
+<a href="/ticwiapp/desktop"> Desktop  </a>...
+<a href="/ticwiapp/update_course"> Update </a>...
+<a href="/ticwiapp/delete_course/{{course.id}}"> Delete </a> ....
+</p>
+
+ <TABLE CLASS="MYTABLE">
+
+     <THEAD >
+        <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">General Information:</TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+
+        <TR CLASS="MYTABLE"><TD CLASS="MYTABLE">Course Name: <b>{{ course.name }}</b></TD></TR>
+        <TR CLASS="MYTABLE"><TD CLASS="MYTABLE">Description: {{ course.description }}</TD></TR>
+        <TR CLASS="MYTABLE"><TD CLASS="MYTABLE">Date: {{ course.date}} </TD></TR>
+        </TR>
+
+     </TBODY>
+</TABLE>
+
+<br><br>
+
+<TABLE CLASS="MYTABLE">
+        <CAPTION CLASS="MYTABLE">Presenters: {{ presenters.count  }}
+        <a href="/ticwiapp/add_presenter/{{course.id}}">
+        <img src=" {% static  "assets/images/new_icon_text.jpg" %} " width=30/>
+        <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/></a></CAPTION>
+
+
+{% if presenters.count > 0 %}
+
+     <THEAD >
+        <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">Name</TH>
+        <TH CLASS="MYTABLE">Email</TH>
+        <TH CLASS="MYTABLE"></TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+
+    {% for presenter in presenters %}
+        <TR CLASS="MYTABLE">
+        <TD CLASS="MYTABLE">{{ presenter.username }}</TD>
+        <TD CLASS="MYTABLE">{{ presenter.email }}</TD>
+        <TD CLASS="MYTABLE">
+        <a href="/ticwiapp/remove_presenter/{{ course.id }}/{{ presenter.id }}"><img src=" {% static  "assets/images/remove_icon.png" %} " width=20/></a></TD>
+        
+        </TR>
+    {% endfor %}
+
+     </TBODY>
+
+{% else %}
+    <TBODY>
+    <TD CLASS="MYTABLE">
+        <img src=" {% static  "assets/images/alert_icon.jpg" %} " width=30/>
+        No presenters registered!
+    </TD>
+    </TBODY>
+{% endif %}
+
+</TABLE>
+
+<br><br>
+
+
+    <TABLE CLASS="MYTABLE">
+        <CAPTION CLASS="MYTABLE">Participants: {{ participants.count  }}
+        <a href="/ticwiapp/add_participant/{{course.id}}">
+        <img src=" {% static  "assets/images/new_icon_text.jpg" %} " width=30/>
+        <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/></a></CAPTION>
+
+{% if participants.count > 0 %}
+
+     <THEAD >
+        <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">Name</TH>
+        <TH CLASS="MYTABLE">Email</TH>
+        <TH CLASS="MYTABLE"></TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+    
+    {% for participant in participants %}
+        <TR CLASS="MYTABLE">
+        <TD CLASS="MYTABLE">  {{ participant.username }}</TD>
+        <TD CLASS="MYTABLE">{{ participant.email }}</TD>
+        <TD CLASS="MYTABLE"> 
+        <a href="/ticwiapp/remove_participant/{{ course.id }}/{{ participant.id }}"><img src=" {% static  "assets/images/remove_icon.png" %} " width=20/></a></TD>
+        </TR>
+    {% endfor %}
+
+     </TBODY>
+
+{% else %}
+    <TBODY>
+    <TD class="MYTABLE">
+          <img src=" {% static  "assets/images/alert_icon.jpg" %} " width=30/>
+          No participants registered!
+    </TD>
+    </TBODY>
+{% endif %}
+    
+    </TABLE>
+
+
+<br><br>
+
+
+{% if participant_tic.count > 0 %}
+
+
+    {% for participant_t in participant_tic %}
+           <p>participant_tic exist:  {{ participant_t.id }}  <a href="/ticwiapp/get_one_tic/{{ participant_t.id }}">Edit... </a>
+        <a href="/ticwiapp/delete_tic/{{ participant_t.id }}"><img src=" {% static  "assets/images/remove_icon.png" %} " width=20/></a></p>
+    {% endfor %}
+
+{% else %}
+      <p>    <img src=" {% static  "assets/images/alert_icon.jpg" %} " width=30/>
+          No participants Tic registered!  <a href="/ticwiapp/add_tic/{{course.id}}/1">
+         <img src=" {% static  "assets/images/new_icon_text.jpg" %} " width=30/>
+         <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/>
+         </a>
+      </p>
+{% endif %}
+
+
+<br><br>
+
+{% if presenter_tic.count > 0 %}
+
+    {# We are expecting just one iteration in follow for#}
+    {% for presenter_t in presenter_tic %}
+           <p>presenter_tic exist:  {{ presenter_t.id }}  <a href="/ticwiapp/get_one_tic/{{ presenter_t.id }}">Edit... </a>
+        <a href="/ticwiapp/delete_tic/{{ presenter_t.id }}"><img src=" {% static  "assets/images/remove_icon.png" %} " width=20/></a></p>
+    {% endfor %}
+
+{% else %}
+      <p>    <img src=" {% static  "assets/images/alert_icon.jpg" %} " width=30/>
+          No presenter Tic registered!  <a href="/ticwiapp/add_tic/{{course.id}}/2">
+         <img src=" {% static  "assets/images/new_icon_text.jpg" %} " width=30/>
+         <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/>
+         </a>
+      </p>
+{% endif %}
+
+
+<h2>Comments</h2>
+{% for c in course.coursecomment_set.all %}
+<p>{{c.first_name}}: {{c.second_name}} Said: {{c.body}} -- access: {{c.access}} already_read: {{c.already_read}} </p>
+{% if c.access = "private" %}
+<a href="/ticwiapp/change_course_comment_access/{{ course.id }}/{{ c.id }}">Make Public </a>
+{% else %}
+<a href="/ticwiapp/change_course_comment_access/{{ course.id }}/{{ c.id }}">Make private</a>
+{% endif %}
+</p>
+{% endfor %}
+
+<p><a href="/ticwiapp/add_comment/{{course.id}}">Add Comment</a></p>
+
+
+
+{% endblock %}
+

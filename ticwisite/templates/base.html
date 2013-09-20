@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <title>{% block title %}Ticwi{% endblock %}</title>
+    <link rel="stylesheet" type="text/css" href=" {% static  "assets/css/default.css" %}" >
+</head>
+
+<body>
+    <div id="page">
+     <div id="upbar">
+        {% block upbar %}
+         UPBAR!
+        {% endblock %}
+     </div>
+
+     <div id="content">
+        {% block content %}This is the content area{% endblock %}
+	<div class="clearfix"></div>
+     </div>
+    </div>
+		
+</body>
+</html>

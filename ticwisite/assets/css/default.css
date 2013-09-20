@@ -1,0 +1,113 @@
+
+<style type="text/css">
+body {
+        text-align: center;
+}
+
+#page {
+        width: 960px;
+        text-align: left;
+        margin: 10px auto 0px auto;
+        background-color: #0c0c0c;
+}
+
+#upbar {
+        position:relative;
+        /*float: center;*/
+        width: 100%;
+        border: 0px solid #000;
+        background-color: #04B45F;
+        color: #EFFBF8;
+}
+
+#content {
+        position:relative;
+        top:10%;
+        left:0%;
+        float: left;
+        width: 100%;
+        border: 0px solid #f00;
+        /*padding: 10px;*/
+        line-height: 36px;
+        margin:0 auto;
+}
+
+
+label, input {
+        float: left;
+}
+
+ul {
+        list-style: none;
+}
+
+li {
+        display: inline-block;
+        width: 100%;
+}
+
+.helptext {
+        float: left;
+        width: 100%;
+}
+
+.clearfix {
+        clear: both;
+}
+
+</style>
+
+
+
+
+
+
+
+  CAPTION.MYTABLE
+  {
+     background-color:#ffffff;
+     color:#107000;
+     border-style:solid;
+     border-width:0px;
+     border-color:#107000;
+     text-align:left;
+  }
+
+  TABLE.MYTABLE
+  { 
+     font-family:arial;
+     border-collapse:collapse;
+     font-size:10pt;
+     background-color:#ffffff;
+     width:100%;
+     border-width:0px;
+  }
+
+  TH.MYTABLE
+  {
+     font-size:10pt;
+     background-color:#107000;
+     color:white;
+     border-style:solid;
+     border-width:0;
+     border-color:#ffffff;
+     text-align:center;
+  }
+
+
+  TR.MYTABLE
+  { 
+     height:2;
+     vertical-align:center;
+  }
+
+  TD.MYTABLE
+  {  
+     font-size:10pt;
+     background-color:#ffffff;
+     color:black;
+     border-style:solid;
+     border-width:1px;
+     border-color:#105010;
+     text-align:left;
+  }

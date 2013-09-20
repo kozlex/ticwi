@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+{% block content %}
+
+.....<a href="/ticwiapp/desktop/"> Desktop </a>
+
+
+{% if users.count > 0 %}
+
+ <TABLE CLASS="MYTABLE">
+    <CAPTION CLASS="MYTABLE">User</CAPTION>
+    
+    <THEAD >
+      <TR CLASS="MYTABLE">
+        <TH CLASS="MYTABLE">Name</TH>
+        <TH CLASS="MYTABLE"></TH>
+      </TR>
+    </THEAD>
+    <TBODY>
+{% for user in users %}
+<TR CLASS="MYTABLE">
+<TD CLASS="MYTABLE">{{ user.email }}</TD>
+<TD CLASS="MYTABLE"><a href="/ticwiapp/send_message/{{ user.id }}/{{sender.id}}/"> <img src=" {% static  "assets/images/add_new_icon.png" %} " width=15/></a></TD>
+</TR>
+
+{% endfor %}
+
+ </TBODY>
+</TABLE>
+
+{% else %}
+
+
+<pd>No users in database!</p>
+
+{% endif %}
+
+{% endblock %}
+

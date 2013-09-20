@@ -1,0 +1,32 @@
+{% extends  "base.html" %}
+
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+
+{% block content %}
+
+
+{% ifequal user.user_type  "i" %}.....<a href="/ticwiapp/create_course"> Create Course </a> {% endifequal %}
+.....<a href="/ticwiapp/search_user"> Search User </a>
+.....<a href="/ticwiapp/search_course"> Search Course </a>
+
+.... Inbox: {{ inbox_messages }}
+............................................ User-dbg: {{ user.id }} -- {{ user.email }}
+
+{% block 'all_courses' %}
+{% include 'courses.html' %}
+
+{% endblock %}
+
+<p>SUGGESTED Courses</p>
+
+<p>My Courses</p>
+
+<p>My Tics</p>
+<p>Following</p>
+<p>get connected</p>
+
+{% endblock %}
+~                

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+
+{% block upbar %}
+{% include 'upbar_logged.html' %}
+{% endblock upbar %}
+
+
+
+{% block content %}
+
+<p>
+<a href="/ticwiapp/get_one_course/{{ course_id }}"> Edit </a>...
+<a href="/ticwiapp/get_one_course/{{ course_id }}"> Cancel  </a>...
+<a href="/ticwiapp/get_one_course/{{ course_id }}"> GUI </a>...
+</p>
+
+<form action="{# /ticwiapp/add_tic/{{ course_id }}/{{ user_type }}/#}" method="{#post#}" enctype="multipart/form-data">{% csrf_token %}
+<ul>
+{{form.as_ul}}
+</ul>
+
+<input type="submit" name="submit" value="Add Tic">
+</form>
+{% endblock %}
+

@@ -10,7 +10,6 @@ TEMPLATE_DEBUG = True
 AUTHENTICATION_BACKENDS = (
     'profilemanager.auth_backends.CustomUserModelBackend',
 )
-#...
 
 #Custom User uses AUTHENTICATION_BACKENDS to use CustomUser as django user and get its values like request.user
 CUSTOM_USER_MODEL = 'profilemanager.CustomUser'

@@ -279,7 +279,7 @@ def send_message(request, user_id, sender_id):
     args.update(csrf(request))
     #follow query uses Q Objects to perform an AND / OR operation; geta all conversasion from user and sender
     args['messages'] = InboxMessage.objects.filter( Q(Q(sender_id = sender_obj) & Q(receiver_id = receiver_obj)) | Q(Q(sender_id = receiver_obj) & Q(receiver_id = sender_obj)) )
-    args['inbox'] = a   # course ??
+    #args['inbox'] = a   # course ??
     args['form'] = f
     args['user_id'] = user_id
     args['sender_id'] = sender_id
